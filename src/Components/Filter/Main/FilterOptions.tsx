@@ -100,7 +100,7 @@ function FilterOptions(){
                 </div>
             </div>
 
-            <button className="button-style-1" type="submit" name="filter_button" value="GO">Filter</button>
+            <button className="button-style-4" type="submit" name="filter_button" value="GO">Filter</button>
         </div>
     )
 }
