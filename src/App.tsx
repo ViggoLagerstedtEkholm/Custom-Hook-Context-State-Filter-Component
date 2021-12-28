@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {Order} from "./Context/InputValueContext";
+import FilterBox, {APIResponse} from "./Components/Filter/FilterBox";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [results, setResults] = useState<APIResponse[]>([]);
+
+    return (
+        <div className="container">
+            <FilterBox order={Order.Descending}
+                       page={5} search={"test"}
+                       resultsPerPage={10}
+                       options={['test1', 'test2', 'test3']}
+                       result={(response) => setResults(response)}
+                       APIEndpoint={'https://random-data-api.com/api/cannabis/random_cannabis?size=5'}>
+                <h2>Results</h2>
+                {
+                    results.map((value, index) =>{
+                        return <div className="card-info" key={index}>{value.id}</div>
+                    })
+                }
+            </FilterBox>
+        </div>
+    );
 }
 
 export default App;
